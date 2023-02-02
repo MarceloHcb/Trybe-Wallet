@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 function Header(props) {
   const { email } = props;
-  console.log(email);
   return (
     <div>
       <h2 data-testid="email-field">
