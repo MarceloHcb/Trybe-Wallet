@@ -4,15 +4,10 @@ import { connect } from 'react-redux';
 
 function Header(props) {
   const { email, expenses } = props;
-
-  console.log(expenses);
-
   const total = expenses.reduce((acc, cur) => {
     const exchange = cur.exchangeRates[cur.currency].ask;
-    // console.log(exchange);
     return acc + (Number(cur.value) * exchange);
   }, 0);
-  console.log(total);
   return (
     <div>
       <h2 data-testid="email-field">
