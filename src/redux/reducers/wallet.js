@@ -1,4 +1,4 @@
-import { GET_CURRENCY } from '../actions';
+import { GET_CURRENCY, GET_EXPENSES } from '../actions';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -6,7 +6,6 @@ const INITIAL_STATE = {
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   // erroDataCurrencies: '',
-
 };
 
 export const wallet = (state = INITIAL_STATE, action) => {
@@ -16,7 +15,14 @@ export const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       currencies: [...action.payload.currencies],
     };
+  case GET_EXPENSES:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload],
+      idToEdit: action.payload.id,
+      exchangeRates: action.exchangeRates,
 
+    };
   default:
     return state;
   }
