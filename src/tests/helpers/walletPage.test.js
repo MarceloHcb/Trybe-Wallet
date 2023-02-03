@@ -25,6 +25,7 @@ describe('Testa a página da carteira', () => {
 //     const totalValue = screen.getByTestId('total-field')
 //     userEvent.type(inputValue, '5');
 //     userEvent.click(button)
-//     expect(totalValue).toHaveValue('25.72')
+//     console.log('total value',totalValue.innerHTML);
+//     expect(totalValue.innerText).toHaveValue('25.72')
 //   });
 });
