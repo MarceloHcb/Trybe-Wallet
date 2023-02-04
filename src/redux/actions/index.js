@@ -24,7 +24,6 @@ export const GET_EXPENSES = 'GET_EXPENSES';
 
 export const getExpenses = (payload) => async (dispatch) => {
   const result = await getCurrencies();
-  console.log(result);
 
   dispatch({
     type: GET_EXPENSES,
@@ -34,3 +33,10 @@ export const getExpenses = (payload) => async (dispatch) => {
     },
   });
 };
+
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+
+export const deleteExpense = (payload) => ({
+  type: DELETE_EXPENSE,
+  payload,
+});

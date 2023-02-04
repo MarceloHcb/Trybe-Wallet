@@ -96,11 +96,9 @@ class WalletForm extends Component {
           {tag.map((tagOptions) => (
             <option value={ tagOptions } key={ tagOptions }>{tagOptions}</option>
           ))}
-
         </select>
         <button type="submit">Adicionar despesa</button>
       </form>
-
     );
   }
 }
