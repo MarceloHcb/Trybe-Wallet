@@ -34,7 +34,6 @@ class WalletForm extends Component {
     e.preventDefault();
     const { dispatch } = this.props;
     const { id } = this.state;
-    // id:getExpenses.length
     dispatch(getExpenses({ ...this.state }));
     this.setState({
       ...this.INITIAL_STATE,

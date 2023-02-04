@@ -9,43 +9,44 @@ class Table extends Component {
     return (
       <div>
 
-        <table border="1">
+        <table border="2">
           <tr>
             <th>Descrição</th>
             <th>Tag</th>
             <th>Método de pagamento</th>
             <th>Moeda</th>
-            <th>Valor</th>
             <th>Câmbio utilizado</th>
+            <th>Valor</th>
             <th>Valor convertido</th>
             <th>Moeda de conversão</th>
             <th>Editar/Excluir.</th>
           </tr>
-          {
-            expenses
-              .map(({ value, description, id, currency, tag, method, exchangeRates }) => (
-                <tbody key={ id }>
-                  <tr>
-                    <td>{description}</td>
-                    <td>
-                      {' '}
-                      { tag }
-                    </td>
-                    <td>{method}</td>
-                    <td>
-                      {exchangeRates[currency].name}
-                    </td>
-                    <td>{value}</td>
-                    <td>{exchangeRates[currency].ask}</td>
-                    <td>
-                      {(Number(value) * Number(exchangeRates[currency].ask)).toFixed(2)}
-                    </td>
-                    <td>Real</td>
-                    <td />
-                  </tr>
-                </tbody>
-              ))
-          }
+          <tbody>
+            {
+              expenses
+                .map(
+                  ({ value, description, id, currency, tag, method, exchangeRates }) => (
+                    <tr key={ id }>
+                      <td>{description}</td>
+                      <td>
+                        { tag }
+                      </td>
+                      <td>{method}</td>
+                      <td>
+                        {exchangeRates[currency].name}
+                      </td>
+                      <td>{parseFloat(exchangeRates[currency].ask).toFixed(2)}</td>
+                      <td>{parseFloat(value).toFixed(2)}</td>
+                      <td>
+                        {(Number(value) * Number(exchangeRates[currency].ask)).toFixed(2)}
+                      </td>
+                      <td>Real</td>
+                      <td />
+                    </tr>
+                  ),
+                )
+            }
+          </tbody>
         </table>
       </div>
     );
