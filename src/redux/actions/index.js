@@ -1,5 +1,5 @@
 // Coloque aqui suas actions
-import { getCurrencies, getExchangeRates } from '../../tests/helpers/getCurrencies';
+import { getCurrencies } from '../../tests/helpers/getCurrencies';
 
 export const SAVE_USER_INFO = 'SAVE_USER_INFO';
 
@@ -23,7 +23,7 @@ export const getCurrency = () => async (dispatch) => {
 export const GET_EXPENSES = 'GET_EXPENSES';
 
 export const getExpenses = (payload) => async (dispatch) => {
-  const result = await getExchangeRates();
+  const result = await getCurrencies();
   console.log(result);
 
   dispatch({

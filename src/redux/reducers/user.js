@@ -3,7 +3,6 @@ import { SAVE_USER_INFO } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
-
 };
 
 export const user = (state = INITIAL_STATE, action) => {

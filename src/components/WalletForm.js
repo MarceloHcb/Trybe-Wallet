@@ -93,7 +93,6 @@ class WalletForm extends Component {
             ))
           }
         </select>
-
         <select data-testid="tag-input" name="tag" onChange={ this.handleChange }>
           {tag.map((tagOptions) => (
             <option value={ tagOptions } key={ tagOptions }>{tagOptions}</option>
