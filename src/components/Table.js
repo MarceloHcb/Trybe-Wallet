@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
   handleRemove = ({ target }) => {
@@ -10,54 +10,77 @@ class Table extends Component {
     dispatch(deleteExpense(value));
   };
 
+  handleEdit = (element) => {
+    const { dispatch } = this.props;
+    dispatch(editExpense(element));
+  };
+
   render() {
-    const { expenses } = this.props;
+    const { expenses, editor } = this.props;
     return (
       <div>
 
         <table border="2">
-          <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir.</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir.</th>
+            </tr>
+          </thead>
           <tbody>
             {
               expenses
                 .map(
-                  ({ value, description, id, currency, tag, method, exchangeRates }) => (
-                    <tr key={ id }>
-                      <td>{description}</td>
+                  (element) => (
+                    <tr key={ element.id }>
+                      <td>{element.description}</td>
                       <td>
-                        { tag }
+                        { element.tag }
                       </td>
-                      <td>{method}</td>
+                      <td>{element.method}</td>
                       <td>
-                        {exchangeRates[currency].name}
+                        {element.exchangeRates[element.currency].name}
                       </td>
-                      <td>{parseFloat(exchangeRates[currency].ask).toFixed(2)}</td>
-                      <td>{parseFloat(value).toFixed(2)}</td>
                       <td>
-                        {(Number(value) * Number(exchangeRates[currency].ask)).toFixed(2)}
+                        {parseFloat(
+                          element.exchangeRates[element.currency].ask,
+                        ).toFixed(2)}
+
+                      </td>
+                      <td>{parseFloat(element.value).toFixed(2)}</td>
+                      <td>
+                        {(Number(element.value) * Number(element
+                          .exchangeRates[element.currency].ask)).toFixed(2)}
                       </td>
                       <td>Real</td>
                       <td>
                         <button
                           type="button"
+                          data-testid="edit-btn"
+                          value={ element.id }
+                          onClick={ () => this.handleEdit(element) }
+                          disabled={ editor }
+                        >
+                          editar
+                        </button>
+                        <button
+                          type="button"
                           data-testid="delete-btn"
-                          value={ id }
                           onClick={ this.handleRemove }
+                          disabled={ editor }
+                          value={ element.id }
                         >
                           deletar
                         </button>
-                      </td>
 
+                      </td>
                     </tr>
                   ),
                 )
@@ -71,12 +94,14 @@ class Table extends Component {
 
 Table.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  editor: PropTypes.bool.isRequired,
   expenses: PropTypes.shape({
     map: PropTypes.func,
   }).isRequired,
 };
 const mapStateToProps = (globalState) => ({
   expenses: globalState.wallet.expenses,
+  editor: globalState.wallet.editor,
 });
 
 export default connect(mapStateToProps)(Table);
