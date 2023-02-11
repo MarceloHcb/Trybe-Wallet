@@ -44,7 +44,6 @@ class WalletForm extends Component {
   handleClick = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    console.log(this.state);
     const { id } = this.state;
     dispatch(getExpenses({ ...this.state }));
     this.setState({
@@ -121,7 +120,11 @@ class WalletForm extends Component {
             <option value={ tagOptions } key={ tagOptions }>{tagOptions}</option>
           ))}
         </select>
-        <button type="button" onClick={ editor ? this.handleEdit : this.handleClick }>
+        <button
+          data-testid="add-btn"
+          type="button"
+          onClick={ editor ? this.handleEdit : this.handleClick }
+        >
 
           { editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>

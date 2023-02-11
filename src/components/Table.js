@@ -19,7 +19,6 @@ class Table extends Component {
     const { expenses, editor } = this.props;
     return (
       <div>
-
         <table border="2">
           <thead>
             <tr>

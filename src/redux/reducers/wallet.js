@@ -30,7 +30,6 @@ export const wallet = (state = INITIAL_STATE, action) => {
       idToEdit: state.expenses.length,
     };
   case EDIT_EXPENSE:
-    console.log('case edit expense');
     return {
       ...state,
       editor: true,
@@ -41,7 +40,6 @@ export const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: state.expenses.map((expense) => {
         if (expense.id === action.payload.id) {
-          console.log('filter');
           return { ...expense, ...action.payload };
         }
         return expense;

@@ -39,7 +39,6 @@ export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const deleteExpense = (payload) => ({
   type: DELETE_EXPENSE,
   payload,
-
 });
 
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
