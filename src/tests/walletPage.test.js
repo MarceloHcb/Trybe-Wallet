@@ -52,7 +52,5 @@ describe('Testa a página da carteira', () => {
       expect(store.getState().wallet.expenses[0].tag).toBe('Alimentação');
       expect(store.getState().wallet.expenses.editor).toBeFalsy();
     });
-
-    // const editButton
   });
 });

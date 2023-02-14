@@ -55,7 +55,6 @@ class WalletForm extends Component {
 
   handleEdit = () => {
     const { dispatch } = this.props;
-
     dispatch(editDone(this.state));
     this.setState({
       value: '',

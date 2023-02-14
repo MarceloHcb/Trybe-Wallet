@@ -90,9 +90,7 @@ describe('Testa as funcionalidades do componente WalletForm', () => {
     await waitFor(() => {
       const { expenses } = store.getState().wallet;
       expect(expenses).toHaveLength(2);
+      expect(store.getState().wallet.editor).toBeFalsy();
     });
-  });
-  it('', () => {
-
   });
 });
