@@ -51,6 +51,8 @@ describe('Testa se os dados renderizam corretamente no componente Table ', () =>
       expect(store.getState().wallet.editedExpense.id).toEqual(0);
       expect(screen.getByText(/editar despesa/i)).toBeInTheDocument();
     });
+    userEvent.click(screen.getByText(/editar despesa/i));
+    expect(addButton).toBeInTheDocument();
   });
   it('', () => {
 
